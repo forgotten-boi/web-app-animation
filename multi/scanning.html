@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkinGlow — Scanning</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="particles-bg"></div>
+<header>
+  <div class="nav">
+    <div class="brand"><div class="logo">SG</div><div>SkinGlow</div></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="treatments.html">Treatments</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="scanning.html">Scanning</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1 data-aos="fade-down">Face & Skin Scanning</h1>
+  <p class="lead" data-aos="fade-up">AI-driven imaging and clinical scanners map pigmentation, vascularity, pores and hydration. Reference research below.</p>
+
+  <section class="grid cols-3" style="margin-top:18px">
+    <article class="card" data-aos="fade-up">
+      <img src="https://images.pexels.com/photos/59986/pexels-photo-59986.jpeg" alt="skin scan 1">
+      <h3>Clinical Imaging</h3>
+      <p>High-resolution maps for pigment/vascular assessment.</p>
+    </article>
+    <article class="card" data-aos="fade-up" data-aos-delay="80">
+      <img src="https://images.pexels.com/photos/1181742/pexels-photo-1181742.jpeg" alt="3d scan">
+      <h3>3D Face Mapping</h3>
+      <p>Volume analysis for planning and monitoring aesthetic treatments.</p>
+    </article>
+    <article class="card" data-aos="fade-up" data-aos-delay="160">
+      <img src="https://images.pexels.com/photos/1549087/pexels-photo-1549087.jpeg" alt="analysis">
+      <h3>AI Analysis</h3>
+      <p>Algorithms trained on clinical datasets produce reproducible reports.</p>
+    </article>
+  </section>
+
+  <p class="mt-8">Read: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8063003/" target="_blank">Medical study on AI skin analysis (PMC)</a></p>
+
+  <section style="margin-top:28px">
+    <h4 data-aos="fade-up">Demo video</h4>
+    <video controls data-hover-play="true" muted style="width:100%;height:420px;object-fit:cover" data-aos="zoom-in"><source src="https://assets.mixkit.co/videos/preview/mixkit-woman-taking-care-of-her-skin-4738-large.mp4" type="video/mp4"></video>
+  </section>
+</main>
+
+<footer><div class="container">© 2025 SkinGlow — Scanning</div></footer>
+
+<div id="media-modal" class="modal"><div class="dialog"><button class="modal-close">Close</button><div class="media"></div></div></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

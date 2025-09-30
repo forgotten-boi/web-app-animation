@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkinGlow — Treatments</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="particles-bg"></div>
+<header>
+  <div class="nav">
+    <div class="brand"><div class="logo">SG</div><div>SkinGlow</div></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="treatments.html">Treatments</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="scanning.html">Scanning</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1 data-aos="fade-down">Treatments</h1>
+  <p class="lead" data-aos="fade-up">Detailed overview of procedures, mechanism, and outcomes. Click 'Watch demo' to open media.</p>
+
+  <section class="card" data-aos="fade-right" id="lasers">
+    <h2>Laser Treatments</h2>
+    <img src="https://images.pexels.com/photos/3845768/pexels-photo-3845768.jpeg" alt="Laser">
+    <p>Fractional CO₂, Nd:YAG, Q-switched & IPL for resurfacing, pigment and vascular lesions.</p>
+    <p>Learn: <a href="https://www.aad.org/public/cosmetic/treatments/lasers" target="_blank">American Academy of Dermatology</a></p>
+    <button class="btn btn-primary" data-modal-open="media-modal" data-media="https://www.youtube.com/embed/ysz5S6PUM-U">Watch demo</button>
+  </section>
+
+  <section class="card" data-aos="fade-left" id="microneedling">
+    <h2>Microneedling</h2>
+    <img src="https://images.pexels.com/photos/4498374/pexels-photo-4498374.jpeg" alt="Microneedling">
+    <p>Collagen induction therapy to remodel scars and improve texture.</p>
+    <p>Resources: <a href="https://www.healthline.com/health/microneedling" target="_blank">Healthline</a></p>
+    <button class="btn btn-outline" data-modal-open="media-modal" data-media="https://www.youtube.com/embed/2X9b6uH1k3g">Watch demo</button>
+  </section>
+
+  <section class="card" data-aos="fade-right" id="polynuc">
+    <h2>Polynucleotides</h2>
+    <img src="https://images.pexels.com/photos/4558954/pexels-photo-4558954.jpeg" alt="Polynucleotides">
+    <p>Regenerative injectables for hydration and structural improvement.</p>
+    <p>Study: <a href="https://pubmed.ncbi.nlm.nih.gov/33103291/" target="_blank">PubMed</a></p>
+    <button class="btn btn-primary" data-modal-open="media-modal" data-media="https://assets.mixkit.co/videos/preview/mixkit-woman-taking-care-of-her-skin-4738-large.mp4">Watch demo</button>
+  </section>
+
+  <section class="card" data-aos="fade-up" id="injectables">
+    <h2>Botox & Injectables</h2>
+    <img src="https://images.pexels.com/photos/4558954/pexels-photo-4558954.jpeg" alt="Injectables">
+    <p>Neuromodulators and fillers for dynamic lines and volume restoration. Safety guidelines apply.</p>
+    <p>Guidance: <a href="https://www.fda.gov/consumers/consumer-updates/botox-and-dermal-fillers" target="_blank">FDA</a></p>
+    <button class="btn btn-outline" data-modal-open="media-modal" data-media="https://www.youtube.com/embed/ysz5S6PUM-U">Watch demo</button>
+  </section>
+</main>
+
+<footer><div class="container">© 2025 SkinGlow — Treatments</div></footer>
+
+<div id="media-modal" class="modal"><div class="dialog"><button class="modal-close">Close</button><div class="media"></div></div></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

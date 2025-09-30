@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkinGlow — Multi Home</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="particles-bg"></div>
+<header>
+  <div class="nav">
+    <div class="brand"><div class="logo">SG</div><div>SkinGlow</div></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="treatments.html">Treatments</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="scanning.html">Scanning</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner" data-aos="zoom-in">
+    <div style="display:flex;justify-content:center"><div class="blob" aria-hidden="true"></div></div>
+    <h1 class="h1">Advanced Skin Treatments — Melasma, Pigmentation, Acne & Rejuvenation</h1>
+    <p class="lead">Cutting-edge lasers, microneedling, polynucleotides, neuromodulators and AI-driven skin scanning — animations and demos below.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="treatments.html">Explore Treatments</a>
+      <a class="btn btn-outline" href="gallery.html">View Gallery</a>
+    </div>
+    <div style="margin-top:18px"><lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" style="width:220px;height:220px;" loop autoplay></lottie-player></div>
+  </div>
+</section>
+
+<main class="container">
+  <h2 data-aos="fade-up">Conditions we treat</h2>
+  <div class="grid cols-3" style="margin-top:18px">
+    <article class="card" data-aos="fade-up">
+      <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Melasma">
+      <h3>Melasma & Pigmentation</h3>
+      <p>Targeted therapies including Q-switched lasers, topical agents and maintenance plans.</p>
+      <a href="https://www.nhs.uk/conditions/melasma/" target="_blank">NHS: Melasma</a>
+    </article>
+    <article class="card" data-aos="fade-up" data-aos-delay="80">
+      <img src="https://images.pexels.com/photos/3993244/pexels-photo-3993244.jpeg" alt="Acne">
+      <h3>Acne & Scarring</h3>
+      <p>Combined medical and procedural approach: microneedling, lasers and peels.</p>
+      <a href="https://www.webmd.com/skin-problems-and-treatments/acne/default.htm" target="_blank">WebMD: Acne</a>
+    </article>
+    <article class="card" data-aos="fade-up" data-aos-delay="160">
+      <img src="https://images.pexels.com/photos/3845768/pexels-photo-3845768.jpeg" alt="Anti-aging">
+      <h3>Anti-Aging & Rejuvenation</h3>
+      <p>Fillers, neuromodulators, polynucleotides and skin remodelling treatments.</p>
+      <a href="https://www.mayoclinic.org/diseases-conditions/wrinkles/diagnosis-treatment/drc-20354931" target="_blank">Mayo Clinic: Wrinkles</a>
+    </article>
+  </div>
+
+  <section style="margin-top:40px">
+    <h2 data-aos="fade-up">Demo videos</h2>
+    <div class="grid cols-3" style="margin-top:14px">
+      <div class="card" data-aos="fade-up">
+        <h4>Microneedling (YouTube)</h4>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/2X9b6uH1k3g" title="Microneedling" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="80">
+        <h4>Skin Care Routine (MP4)</h4>
+        <video controls data-hover-play="true" muted style="width:100%;height:200px;object-fit:cover"><source src="https://assets.mixkit.co/videos/preview/mixkit-woman-applying-cream-on-her-face-4161-large.mp4" type="video/mp4"></video>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="160">
+        <h4>Laser session (MP4)</h4>
+        <video controls data-hover-play="true" muted style="width:100%;height:200px;object-fit:cover"><source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 SkinGlow — Multi demo. Images & videos linked from Pexels, Unsplash, Mixkit and public resources.</p>
+  </div>
+</footer>
+
+<div id="media-modal" class="modal"><div class="dialog"><button class="modal-close">Close</button><div class="media"></div></div></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
