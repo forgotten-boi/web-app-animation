@@ -1,0 +1,74 @@
+<html>
+  <body>
+     <input type="text" id="voucherCode" placeholder="Enter voucher code (e.g., SAVE10)">
+    <button id="validateButton">Validate Voucher</button>
+
+     <script>
+        // --- Configuration ---
+        const VOUCHER_API_URL = 'https://trs63.itim.com/TRSServices/Voucher/VoucherService.svc/API/ValidateVoucher'; 
+        // NOTE: Replace the above URL with your actual API endpoint.
+        
+        document.getElementById('validateButton').addEventListener('click', fetchVoucher);
+
+        /**
+         * Fetches the voucher code from the input field and calls the API.
+         */
+        async function fetchVoucher() {
+            const code = document.getElementById('voucherCode').value.trim();
+            if (!code) {
+                alert('Please enter a voucher code.');
+                return;
+            }
+
+            // The data structure the API expects in the request body
+            const requestBody = {
+                voucherCode: [code],
+                // You might need other fields like customerId, totalAmount, etc.
+                // totalAmount: 100.00
+            };
+
+            try {
+                // Use the Fetch API to make a POST request
+                const response = await fetch(VOUCHER_API_URL, {
+                    method: 'POST', 
+                    headers: {
+                        // Crucial for sending JSON data
+                        'Content-Type': 'application/json',
+                        // You might need an Authorization header here
+                        // 'Authorization': 'Bearer <token>'
+                    },
+                    body: JSON.stringify(requestBody) // Convert the JavaScript object to a JSON string
+                });
+
+                // Check if the HTTP status is a success code (e.g., 200-299)
+                if (!response.ok) {
+                    // Throw an error if the HTTP status is bad
+                    const errorText = await response.text();
+                    throw new Error(`HTTP Error ${response.status}: ${errorText}`);
+                }
+
+                // Assume the API returns a JSON response (e.g., { "isValid": true, "discount": 10.00 })
+                const result = await response.json(); 
+                
+                // --- Display Result in Alert ---
+                let alertMessage = `Voucher: ${code}\n\n`;
+
+                if (result.isValid) {
+                    alertMessage += `✅ Validation Successful!\n`;
+                    alertMessage += `Discount Applied: $${result.discount.toFixed(2) || '0.00'}`;
+                } else {
+                    alertMessage += `❌ Validation Failed.\n`;
+                    alertMessage += `Reason: ${result.reason || 'Invalid or expired code.'}`;
+                }
+                
+                alert(alertMessage);
+
+            } catch (error) {
+                // Catches network errors, JSON parsing errors, and custom HTTP errors
+                alert(`API Call Failed: ${error.message}`);
+                console.error('API Error:', error);
+            }
+        }
+    </script>
+  </body>
+</html>
