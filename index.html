@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SkinGlow — Animated Demo</title>
+
+  <!-- Tailwind CDN (utility classes) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Scroll animations) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- GSAP + ScrollTrigger for advanced scroll animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- tsParticles for particle background -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+
+  <!-- Lottie player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    /* Additional styles + CSS animations */
+    html,body { height:100%; }
+    .hero-bg { background: linear-gradient(120deg, rgba(16,24,40,0.85), rgba(8,145,178,0.6)), url('https://picsum.photos/seed/skinhero/1600/900') center/cover fixed; }
+    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .neon { text-shadow: 0 0 8px rgba(99,102,241,0.9), 0 0 24px rgba(59,130,246,0.6); }
+    /* morphing blob */
+    @keyframes blob {
+      0% { border-radius: 42% 58% 62% 38% / 40% 42% 58% 60%; transform: translate(0,0) scale(1); }
+      25% { border-radius: 58% 42% 38% 62% / 44% 66% 34% 56%; transform: translate(8px,-6px) scale(1.03); }
+      50% { border-radius: 32% 68% 52% 48% / 56% 38% 62% 44%; transform: translate(-6px,10px) scale(0.98); }
+      75% { border-radius: 64% 36% 46% 54% / 34% 56% 44% 66%; transform: translate(-10px,-8px) scale(1.02); }
+      100% { border-radius: 42% 58% 62% 38% / 40% 42% 58% 60%; transform: translate(0,0) scale(1); }
+    }
+    .blob {
+      width: 220px; height:220px; background: linear-gradient(135deg,#7dd3fc,#60a5fa); animation: blob 8s infinite;
+      filter: drop-shadow(0 10px 30px rgba(59,130,246,0.2));
+    }
+
+    /* floating cards */
+    .floaty { transition: transform .35s ease, box-shadow .35s ease; }
+    .floaty:hover { transform: translateY(-12px) rotate(-1deg); box-shadow: 0 24px 48px rgba(2,6,23,0.2); }
+
+    /* animated gradient border */
+    .gradient-border {
+      position: relative; border-radius: 16px; padding: 1px;
+      background: linear-gradient(90deg, rgba(99,102,241,1), rgba(59,130,246,1));
+    }
+    .gradient-border > .inner { border-radius: 15px; padding: 24px; background: rgba(255,255,255,0.02); }
+
+    /* animated pulse icons */
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); opacity:1 } 50% { transform: scale(1.06); opacity:.85 } 100% { transform: scale(1); opacity:1 } }
+
+    /* animated counter */
+    .counter { font-variant-numeric: tabular-nums; }
+
+    /* parallax layer helpers */
+    .parallax { transform: translateZ(0); will-change: transform; }
+
+    /* loading spinner (fallback) */
+    .spinner { border: 4px solid rgba(255,255,255,0.1); border-left-color: #3b82f6; border-radius: 9999px; width:36px; height:36px; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg) } }
+  </style>
+</head>
+<body class="text-slate-100 bg-slate-900">
+
+  <!-- particles container -->
+  <div id="tsparticles" style="position:fixed; inset:0; z-index:0;"></div>
+
+  <!-- NAV -->
+  <header class="fixed w-full z-40">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center shadow-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 4 6 4 10s4 8 8 12c4-4 8-8 8-12s-4-8-8-8z" fill="white"/></svg>
+        </div>
+        <span class="font-semibold text-lg neon">SkinGlow</span>
+      </div>
+
+      <nav class="hidden md:flex gap-6 text-slate-200/80">
+        <a class="hover:text-white" href="#treatments">Treatments</a>
+        <a class="hover:text-white" href="#gallery">Gallery</a>
+        <a class="hover:text-white" href="#scanning">Scanning</a>
+        <a class="hover:text-white" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-bg h-screen relative flex items-center justify-center z-10">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="blob mx-auto mb-6"></div>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight neon drop-shadow-lg" data-aos="zoom-in">Advanced Skin Treatments — <span class="text-cyan-200">Melasma, Acne, Rejuvenation</span></h1>
+      <p class="mt-6 text-lg md:text-xl text-slate-200/80" data-aos="fade-up" data-aos-delay="150">Lasers • Microneedling • Polynucleotides • Botox • Scanning — expert care with modern tech</p>
+
+      <div class="mt-8 flex items-center justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
+        <a href="#treatments" class="px-6 py-3 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 font-semibold shadow-lg hover:scale-105 transform transition">Explore Treatments</a>
+        <a href="#contact" class="px-5 py-3 rounded-full border border-slate-200/10 hover:bg-white/5 transition">Book Consultation</a>
+      </div>
+
+      <!-- Lottie animation -->
+      <div class="mt-12 flex justify-center" data-aos="fade-up" data-aos-delay="450">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" style="width:320px;height:320px;" loop autoplay></lottie-player>
+      </div>
+    </div>
+
+    <!-- SVG wave bottom -->
+    <svg class="absolute left-0 right-0 bottom-0" viewBox="0 0 1200 120" preserveAspectRatio="none" style="height:120px; display:block">
+      <path d="M0,64L80,53.3C160,43,320,21,480,26.7C640,32,800,64,960,80C1120,96,1280,96,1360,96L1440,96L1440,120L0,120Z" fill="#0f172a" opacity="0.6"></path>
+    </svg>
+  </section>
+
+  <!-- Treatments (grid of animated cards) -->
+  <section id="treatments" class="relative z-20 -mt-6">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold">Our Treatments</h2>
+        <p class="text-slate-300/80 mt-2">A collection of advanced skin therapies with animated demos</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Laser -->
+        <article class="glass p-6 rounded-2xl floaty" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-xl flex items-center justify-center bg-gradient-to-tr from-rose-400 to-pink-500 pulse">
+              <!-- animated icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-xl">Laser Treatments</h3>
+              <p class="mt-2 text-slate-200/80">Target pigmentation, vascular lesions & resurfacing. Animated demo included.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-lg overflow-hidden shadow-lg">
+            <img loading="lazy" src="https://picsum.photos/seed/laser/800/500" alt="Laser demo" class="w-full h-48 object-cover" />
+          </div>
+
+          <div class="mt-4 flex gap-3">
+            <button class="px-3 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700">Learn</button>
+            <button class="px-3 py-2 rounded-md border border-slate-600" onclick="playDemo('laser')">Play Demo</button>
+          </div>
+        </article>
+
+        <!-- Microneedling -->
+        <article class="glass p-6 rounded-2xl floaty" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-xl flex items-center justify-center bg-gradient-to-tr from-green-400 to-emerald-500">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-xl">Microneedling</h3>
+              <p class="mt-2 text-slate-200/80">Collagen induction therapy to reduce scars and texture.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-lg overflow-hidden shadow-lg">
+            <img loading="lazy" src="https://picsum.photos/seed/micro/800/500" alt="Microneedling" class="w-full h-48 object-cover" />
+          </div>
+
+          <div class="mt-4 flex gap-3">
+            <button class="px-3 py-2 rounded-md bg-emerald-500 hover:bg-emerald-600">Details</button>
+            <button class="px-3 py-2 rounded-md border border-slate-600" onclick="openModal('micro')">Before/After</button>
+          </div>
+        </article>
+
+        <!-- Injectables -->
+        <article class="glass p-6 rounded-2xl floaty" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 rounded-xl flex items-center justify-center bg-gradient-to-tr from-yellow-400 to-orange-400">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="#fff" stroke-width="1.6"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-xl">Botox & Injectables</h3>
+              <p class="mt-2 text-slate-200/80">Precision neuromodulators and fillers for lines & volume.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-lg overflow-hidden shadow-lg">
+            <img loading="lazy" src="https://picsum.photos/seed/inject/800/500" alt="Injectables" class="w-full h-48 object-cover" />
+          </div>
+
+          <div class="mt-4 flex gap-3">
+            <button class="px-3 py-2 rounded-md bg-yellow-500 hover:bg-yellow-600">Learn</button>
+            <button class="px-3 py-2 rounded-md border border-slate-600" onclick="openModal('inject')">Watch</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax - layered images + morphing SVG -->
+  <section class="relative z-20">
+    <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right">
+        <h3 class="text-2xl font-bold mb-4">Face & Skin Scanning</h3>
+        <p class="text-slate-300/80 mb-6">Advanced imaging and AI-driven analysis to map pigmentation, hydration and vascular issues.</p>
+
+        <div class="gradient-border inline-block">
+          <div class="inner">
+            <div class="flex items-center gap-6">
+              <div class="blob w-28 h-28"></div>
+              <div>
+                <div class="text-3xl font-bold counter" data-target="98">0</div>
+                <div class="text-slate-300/80 text-sm">% Accuracy (demo)</div>
+              </div>
+            </div>
+            <p class="mt-4 text-slate-300/80">Real-time maps, automated recommendations and track progress over time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative" data-aos="fade-left">
+        <div id="parallax-wrap" class="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+          <img class="absolute inset-0 w-full h-full object-cover parallax" src="https://picsum.photos/seed/scan/1200/800" alt="scan" />
+          <svg viewBox="0 0 300 300" class="absolute right-6 top-6 w-48 opacity-90">
+            <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+            <path id="blobPath" d="M75,20 C110,-5 190,-5 225,20 C260,45 280,120 225,155 C170,190 90,190 45,155 C0,120 40,45 75,20Z" fill="url(#g1)"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery / Video heavy -->
+  <section id="gallery" class="z-20 relative">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <h3 class="text-2xl font-bold mb-6 text-center">Demo Videos & Gallery</h3>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-lg overflow-hidden shadow-lg" data-aos="flip-left">
+          <video controls muted playsinline class="w-full h-64 object-cover">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+            Sorry — your browser can't play the video.
+          </video>
+        </div>
+
+        <div class="rounded-lg overflow-hidden shadow-lg" data-aos="flip-left" data-aos-delay="150">
+          <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Demo" class="w-full h-64"></iframe>
+        </div>
+
+        <div class="rounded-lg overflow-hidden shadow-lg" data-aos="flip-left" data-aos-delay="300">
+          <img loading="lazy" src="https://picsum.photos/seed/gallery2/1200/800" alt="gallery" class="w-full h-64 object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA with animated gradient border and tilt-ish effect -->
+  <section class="z-20 relative">
+    <div class="max-w-5xl mx-auto px-6 py-20 text-center">
+      <div class="p-8 rounded-3xl glass inline-block transform transition-all hover:scale-105" data-aos="zoom-in">
+        <h3 class="text-3xl font-bold mb-4">Ready to start? Book a consultation</h3>
+        <p class="text-slate-300/80 mb-6">Personalized plans for melasma, pigmentation, acne and anti-aging.</p>
+        <a id="bookBtn" href="mailto:info@skinglowclinic.com" class="px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 font-semibold shadow-lg">Email to Book</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="z-20 relative bg-slate-900/80 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-12 text-center">
+      <p class="text-slate-400 mb-4">© 2025 SkinGlow — Demo site with heavy animations</p>
+      <div class="flex items-center justify-center gap-6">
+        <a href="#" class="text-slate-300 hover:text-white">Privacy</a>
+        <a href="#" class="text-slate-300 hover:text-white">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal container (for before/after & demos) -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center z-50 bg-black/60">
+    <div class="bg-slate-900 rounded-xl max-w-3xl w-full p-6 relative">
+      <button onclick="closeModal()" class="absolute right-4 top-4 text-slate-300">✕</button>
+      <div id="modalContent" class="rounded-md overflow-hidden"></div>
+    </div>
+  </div>
+
+  <!-- AOS init -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // init AOS
+    AOS.init({ duration: 900, once: true });
+
+    // init particles
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      detectRetina: true,
+      particles: {
+        number: { value: 40, density: { enable: true, area: 800 } },
+        color: { value: ["#60a5fa","#7dd3fc","#a78bfa"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.12 },
+        size: { value: { min: 2, max: 8 } },
+        move: { enable: true, speed: 0.9, direction: "none", outModes: { default: "out" } },
+        links: { enable: true, distance: 120, opacity: 0.06, color: "#7dd3fc" }
+      },
+      interactivity: {
+        detectsOn: "canvas", events: { onHover: { enable: true, mode: "grab" }, onClick: { enable: true, mode: "push" } },
+        modes: { grab: { distance: 160 }, push: { quantity: 4 } }
+      }
+    });
+
+    // GSAP scroll animations + parallax
+    gsap.registerPlugin(ScrollTrigger);
+
+    // subtle parallax on hero blob
+    gsap.to(".blob", {
+      y: -40,
+      ease: "sine.inOut",
+      repeat: -1, yoyo: true, duration: 4
+    });
+
+    // parallax images & layers
+    gsap.utils.toArray('.parallax').forEach((el, i) => {
+      gsap.to(el, {
+        y: i % 2 ? -40 : 40,
+        ease: "none",
+        scrollTrigger: { trigger: el, scrub: 0.8 }
+      });
+    });
+
+    // morph svg blob slightly on scroll using GSAP
+    const blobPath = document.querySelector('#blobPath');
+    if (blobPath) {
+      const startD = blobPath.getAttribute('d');
+      const endD = "M90,10 C140,-20 260,-20 310,10 C360,40 370,140 310,170 C250,200 120,200 70,170 C20,140 40,40 90,10Z";
+      gsap.to({}, {
+        scrollTrigger: {
+          trigger: '#parallax-wrap',
+          start: "top center",
+          end: "bottom center",
+          scrub: 1
+        },
+        onUpdate: self => {
+          const t = self.progress;
+          // simple interpolation (not perfect morph but gives animated effect)
+          // swap based on progress
+          blobPath.setAttribute('d', t < 0.5 ? startD : endD);
+        }
+      });
+    }
+
+    // counter animation
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = +el.dataset.target || 100;
+      gsap.to(el, {
+        innerText: target, snap: { innerText: 1 },
+        duration: 2, ease: "power1.out",
+        scrollTrigger: { trigger: el, start: "top 80%", once: true }
+      });
+    });
+
+    // tilt on hover for cards (small effect)
+    document.querySelectorAll('.floaty').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${(-y*6)}deg) rotateY(${(x*6)}deg) translateY(-8px)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.transform = '');
+    });
+
+    // Modal helpers
+    function openModal(type) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modalContent');
+      content.innerHTML = '';
+      if (type === 'micro') {
+        content.innerHTML = `<img src="https://picsum.photos/seed/beforeafter/1200/700" class="w-full h-96 object-cover rounded-md" /><p class="mt-4 text-slate-300">Before & After (demo image)</p>`;
+      } else if (type === 'inject') {
+        content.innerHTML = `<iframe class="w-full h-96" src="https://www.youtube.com/embed/ysz5S6PUM-U"></iframe>`;
+      } else {
+        content.innerHTML = `<p class="text-slate-300">Demo content</p>`;
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeModal() { document.getElementById('modal').classList.add('hidden'); document.getElementById('modal').classList.remove('flex'); }
+
+    function playDemo(which) {
+      openModal(which);
+    }
+
+    // accessibility: close modal on esc
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // lazy-load improvement: ensure videos/iframes are allowed to paint after scroll (optional)
+    window.addEventListener('load', () => {
+      // small entrance animation
+      gsap.from("section", { opacity: 0, y: 20, stagger: 0.08, duration: 0.8 });
+    });
+
+  </script>
+</body>
+</html>
