@@ -17,5 +17,18 @@ a:hover {
   text-decoration: underline wavy cyan;
   transition: 0.2s;
 }
+.card,
+.gallery-item,
+.hero-inner,
+.lead,
+.blob {
+  
+  z-index: 1;
+}
+
+.grid img{
+  opacity: 1;
+  z-index: 1;
+}
 
 .hero-bg { background: linear-gradient(120deg, rgba(16,24,40,0.85), rgba(8,145,178,0.6)), url('https://images.unsplash.com/photo-1518631234976-5199d0d9f5d6?auto=format&fit=crop&w=1600&q=80') center/cover fixed; }
