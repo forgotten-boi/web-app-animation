@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SkinGlow — Home</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    /* Use the same CSS from the heavy demo earlier (blob, glass, neon, floaty, etc.) */
+    /* ... (copy CSS blob/pulse/gradient-border animations here) ... */
+    body { background:#071024; color: #e6eef8; scroll-behavior: smooth; }
+    .hero-bg { background: linear-gradient(120deg, rgba(16,24,40,0.85), rgba(8,145,178,0.6)), url('https://images.unsplash.com/photo-1518631234976-5199d0d9f5d6?auto=format&fit=crop&w=1600&q=80') center/cover fixed; }
+  </style>
+</head>
+<body>
+
+  <!-- shared nav -->
+  <header class="fixed w-full z-40">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center shadow-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 4 6 4 10s4 8 8 12c4-4 8-8 8-12s-4-8-8-8z" fill="white"/></svg>
+        </div>
+        <span class="font-semibold text-lg">SkinGlow</span>
+      </div>
+
+      <nav class="hidden md:flex gap-6">
+        <a href="index.html">Home</a>
+        <a href="treatments.html">Treatments</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="scanning.html">Scanning</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <section class="hero-bg h-screen flex items-center justify-center">
+    <div class="text-center max-w-4xl px-6">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4" data-aos="zoom-in">Advanced Skin Treatments — Confident Results</h1>
+      <p class="mb-6" data-aos="fade-up" data-aos-delay="150">Lasers • Microneedling • Polynucleotides • Injectables • AI Scanning</p>
+
+      <div class="flex gap-4 justify-center" data-aos="fade-up" data-aos-delay="300">
+        <a href="treatments.html" class="px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400">Explore treatments</a>
+        <a href="contact.html" class="px-5 py-3 rounded-full border">Book consultation</a>
+      </div>
+
+      <div class="mt-10" data-aos="zoom-in" data-aos-delay="450">
+        <!-- Lottie animation (cosmetic) -->
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" style="width:260px;height:260px;" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </section>
+
+  <!-- quick features -->
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-2xl" data-aos="fade-up">
+        <h3 class="text-xl font-semibold">Melasma & Pigmentation</h3>
+        <p class="mt-2 text-slate-200/80">Targeted pigment treatments & maintenance.</p>
+        <a href="treatments.html#pigmentation" class="text-cyan-300 underline">Learn more</a>
+      </div>
+      <div class="glass p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="150">
+        <h3 class="text-xl font-semibold">Acne & Scarring</h3>
+        <p class="mt-2">Laser & microneedling therapies to rebuild texture.</p>
+        <a href="treatments.html#acne" class="text-cyan-300 underline">Learn more</a>
+      </div>
+      <div class="glass p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-semibold">Anti-Aging & Rejuvenation</h3>
+        <p class="mt-2">Injectables, polynucleotides & skin remodelling.</p>
+        <a href="treatments.html#antiaging" class="text-cyan-300 underline">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center text-slate-400">
+    <p>© 2025 SkinGlow — Demo site. Images & videos from Pexels / Unsplash / Pixabay. See Gallery for sources.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, once: true });
+
+    // tsParticles init (simple background sparkle)
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      particles: { number: { value: 30 }, color: { value: ["#60a5fa","#7dd3fc"] }, size: { value: { min: 2, max: 7 } }, move: { enable:true, speed: 0.8 } }
+    }).catch(()=>{});
+  </script>
+</body>
+</html>
