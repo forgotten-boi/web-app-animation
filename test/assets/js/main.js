@@ -36,7 +36,8 @@ tsParticles.load("particles-bg", {
 gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray('.glass').forEach(card => {
   gsap.from(card, {
-    opacity: 0,
+    opacity: 1,
+    
     y: 50,
     duration: 1,
     scrollTrigger: { trigger: card, start: "top 80%" }
@@ -45,7 +46,7 @@ gsap.utils.toArray('.glass').forEach(card => {
 
 gsap.utils.toArray('.glass, img, video, form').forEach(el => {
   gsap.from(el, {
-    opacity: 0,
+    opacity: 1,
     y: 50,
     scale: 0.95,
     duration: 1,
