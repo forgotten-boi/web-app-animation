@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkinGlow Multi — Treatments</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#071024] text-[#e6eef8]">
+
+<header class="fixed w-full z-40 bg-opacity-70 bg-black">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold">SkinGlow</a>
+    <nav class="hidden md:flex gap-6">
+      <a href="index.html">Home</a>
+      <a href="treatments.html">Treatments</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="scanning.html">Scanning</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pt-32 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+  <!-- Melasma -->
+  <div class="glass p-6 rounded-2xl" data-aos="fade-right">
+    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Melasma Treatment" class="rounded-xl mb-4">
+    <h3 class="text-xl font-semibold">Melasma & Pigmentation</h3>
+    <p class="mt-2">Laser and topical treatments for hyperpigmentation, sun spots, and melasma.</p>
+  </div>
+
+  <!-- Acne -->
+  <div class="glass p-6 rounded-2xl" data-aos="fade-left">
+    <img src="https://images.pexels.com/photos/3993244/pexels-photo-3993244.jpeg" alt="Acne Treatment" class="rounded-xl mb-4">
+    <h3 class="text-xl font-semibold">Acne & Scarring</h3>
+    <p class="mt-2">Microneedling, chemical peels, and laser therapies to reduce active acne and scars.</p>
+  </div>
+
+  <!-- Rosacea -->
+  <div class="glass p-6 rounded-2xl" data-aos="fade-right">
+    <img src="https://images.pexels.com/photos/3769022/pexels-photo-3769022.jpeg" alt="Rosacea Treatment" class="rounded-xl mb-4">
+    <h3 class="text-xl font-semibold">Rosacea & Vascular Conditions</h3>
+    <p class="mt-2">Laser and IPL therapies to calm redness and visible veins.</p>
+  </div>
+
+  <!-- Anti-aging -->
+  <div class="glass p-6 rounded-2xl" data-aos="fade-left">
+    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Anti-Aging" class="rounded-xl mb-4">
+    <h3 class="text-xl font-semibold">Anti-Aging & Rejuvenation</h3>
+    <p class="mt-2">Botox, fillers, and polynucleotide injections for lines, wrinkles, and skin revitalization.</p>
+  </div>
+
+  <!-- Skin scanning -->
+  <div class="glass p-6 rounded-2xl col-span-2" data-aos="fade-up">
+    <img src="https://images.pexels.com/photos/59986/pexels-photo-59986.jpeg" alt="Skin Scanning" class="rounded-xl mb-4">
+    <h3 class="text-xl font-semibold">Advanced Face & Skin Scanning</h3>
+    <p class="mt-2">State-of-the-art diagnostic imaging to plan personalized treatments.</p>
+  </div>
+</section>
+
+<footer class="py-10 text-center text-slate-400">
+  <p>© 2025 SkinGlow — Multi-page demo site.</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  AOS.init({ duration: 900, once: true });
+</script>
+
+</body>
+</html>
