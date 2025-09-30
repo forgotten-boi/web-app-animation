@@ -1,0 +1,10 @@
+
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; animation: fadeIn 3s; }
+header { background:#222; color:#fff; padding:20px; text-align:center; animation: slideDown 2s; }
+nav { background:#444; padding:10px; text-align:center; }
+nav a { color:#fff; margin:0 10px; text-decoration:none; transition: color 0.3s; }
+nav a:hover { color: gold; }
+section { padding:20px; animation: fadeUp 2s; }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes slideDown { from{transform:translateY(-100%);} to{transform:translateY(0);} }
+@keyframes fadeUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
